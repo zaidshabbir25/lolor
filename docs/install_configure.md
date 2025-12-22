@@ -1,22 +1,34 @@
 # Installing and Configuring lolor
 
-lolor is supported on Postgres versions 16 and later.
+### Using the pgEdge CLI
 
-You can use the CLI's Update Manager (`um`) module to install the lolor extension.  After installing pgEdge Distributed Postgres, navigate into the `pgedge` directory and add lolor to your installation with the command:
-
-`./pgedge um install lolor`
-
-You can also compile and install the extension from the [source code](https://github.com/pgEdge/lolor), with the same guidelines as any other Postgres extension constructed using PGXS.  Make sure that your PATH environment variable includes the directory where `pg_config` (under your PostgreSQL installation) is located.
-
+You can use the CLI's Update Manager (`um`) module to install the lolor extension. After installing pgEdge Distributed Postgres, navigate into the `pgedge` directory and add lolor to your installation with the command:
 ```
-export PATH=/opt/pg16/bin:$PATH
+./pgedge um install lolor
+```
+
+### Using Enterprise Native Packages
+
+lolor is also available through enterprise native packages for both RPM-based (RHEL, Rocky Linux, AlmaLinux, Oracle Enterprise Linux) and Debian-based (Debian, Ubuntu) distributions. For installation instructions and package availability, visit the [pgEdge Enterprise Postgres](https://www.pgedge.com/products/what-is-pgedge-enterprise-postgres) documentation.
+
+### Building from Source
+
+You can also compile and install the extension from the [source code](https://github.com/pgEdge/lolor), with the same guidelines as any other Postgres extension constructed using PGXS. Make sure that your PATH environment variable includes the directory where `pg_config` (under your PostgreSQL installation) is located.
+```
+export PATH=/usr/pgsql-18/bin:$PATH
+
+# compile
+make USE_PGXS=1
+
+# install (may require sudo)
+make USE_PGXS=1 install
 
 # compile
 make USE_PGXS=1
 make USE_PGXS=1 install
 ```
 
-After installing the lolor extension with either the `um` module or from source code, connect to your Postgres database and create the extension with the command:
+Once lolor is installed, connect to your Postgres database and create the extension with the command:
 
 ```
 CREATE EXTENSION lolor;
